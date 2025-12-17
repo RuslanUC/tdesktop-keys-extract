@@ -132,7 +132,7 @@ def main() -> None:
     if args.pid is not None:
         name = _get_process_name(args.pid)
         if name is not None:
-            processes.append(args.pid)
+            processes.append((args.pid, name))
     elif args.process_name is not None:
         processes = _list_processes(args.process_name)
 
