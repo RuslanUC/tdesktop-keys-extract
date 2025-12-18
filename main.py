@@ -1,6 +1,7 @@
 import argparse
 import hashlib
 import os
+import platform
 from typing import Generator
 
 to_search = [
@@ -122,6 +123,11 @@ def _find_keys(pid: int, progress: bool) -> Generator[tuple[int, bytes], None, N
 
 
 def main() -> None:
+    system = platform.system()
+    if system != "Linux":
+        print(f"\"{system}\" os is not supported at the moment.")
+        exit(1)
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--pid", "-p", type=int, default=None)
     parser.add_argument("--process-name", "-n", type=str, default="telegram-desktop")
